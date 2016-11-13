@@ -1,22 +1,57 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
-/*
-  Generated class for the QuestionAndAnswer page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { QuestionAndAnswerService } from './questionandanswerservice';
+import { QuestionAndAnswer } from './questionandanswer';
 @Component({
   selector: 'page-question-and-answer',
-  templateUrl: 'question-and-answer.html'
+  templateUrl: 'question-and-answer.html',
+  providers: [QuestionAndAnswerService]
 })
 export class QuestionAndAnswerPage {
-
-  constructor(public navCtrl: NavController) {}
+  category: any;
+  questionAndAnswerId: number;
+  questionAndAnswer: QuestionAndAnswer;
+  questionCount: number;
+  constructor(public navCtrl: NavController, private navParams: NavParams, private questionAndAnswerService: QuestionAndAnswerService) {
+    this.category = this.navParams.data;
+    console.log(this.navParams);
+    console.log(this.category);
+     this.questionCount = 1;
+     
+  }
 
   ionViewDidLoad() {
-    console.log('Hello QuestionAndAnswerPage Page');
+    console.log("QuestionAndAnswerPage Page");
+  }
+  
+  ngOnInit() {
+    this.getQuestionAndAnswer();    
+  }
+  
+  ngOnDestroy(){
+   
+  }
+  
+  getQuestionAndAnswer() {
+    this.questionAndAnswerId = this.questionCount;
+    this.questionAndAnswerService.getQuestionAndAnswer(this.category.Id, this.questionAndAnswerId)
+      .subscribe(
+      questionAndAnswer => {
+        this.questionAndAnswer = questionAndAnswer;
+        console.log("Question and Answer:" + this.questionAndAnswer);
+      },
+      error => this.questionAndAnswer = <any>error
+      );
+  };
+  
+  nextQuestion(){
+      this.questionCount++;
+      this.getQuestionAndAnswer();
+  }
+  
+  previousQuestion(){
+      this.questionCount--;
+      this.getQuestionAndAnswer();
   }
 
 }

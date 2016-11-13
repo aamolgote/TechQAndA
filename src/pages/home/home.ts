@@ -23,9 +23,9 @@ export class HomePage {
    console.log("Getting categories");
   } 
   
-  openQuestionAndAnswePage(){
+  openQuestionAndAnswePage($event, category){
     console.log("openQuestionAndAnswePage");
-    this.navCtrl.push(QuestionAndAnswerPage);
+    this.navCtrl.push(QuestionAndAnswerPage, category);
     console.log("openQuestionAndAnswePage");
   }
  

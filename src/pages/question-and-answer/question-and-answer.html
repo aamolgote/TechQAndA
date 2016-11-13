@@ -4,13 +4,20 @@
   </ion-navbar>
   <ion-navbar>
     <ion-item>
-      <ion-icon name="arrow-dropleft-circle" item-left></ion-icon>
-      <span> Angular JS </span>
-      <ion-icon name="arrow-dropright-circle" item-right></ion-icon>
+      <ion-icon name="arrow-dropleft-circle" item-left (click)="previousQuestion()"></ion-icon>
+      <span> {{category.Name}} </span>
+      <ion-icon name="arrow-dropright-circle" item-right (click)="nextQuestion()"></ion-icon>
     </ion-item> 
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  
+<ion-content padding scroll="true">
+  <div *ngIf="questionAndAnswer">
+        <span>
+            <h2>{{questionAndAnswer.Question}}</h2>
+        </span>
+        <span>
+            {{questionAndAnswer.Answer}}
+        </span>
+</div>
 </ion-content>
 

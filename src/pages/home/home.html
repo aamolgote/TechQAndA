@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-  <ion-item *ngFor="let category of categories" (click)="openQuestionAndAnswePage(category)">
+  <ion-item *ngFor="let category of categories" (click)="openQuestionAndAnswePage($event, category)">
       <ion-icon name="{{category.iconName}}" item-left></ion-icon>
       {{category.Name}}
   </ion-item>

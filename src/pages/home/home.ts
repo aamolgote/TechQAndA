@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { CategoryService } from './categoryService';
 import { Category } from './Category';
 import { INTERVIEW_APP_CONFIG, INTERVIEW_APP_DI_CONFIG } from './categoryService';
+import { QuestionAndAnswerPage } from '../pages';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -21,6 +22,12 @@ export class HomePage {
    this.getCategories();
    console.log("Getting categories");
   } 
+  
+  openQuestionAndAnswePage(){
+    console.log("openQuestionAndAnswePage");
+    this.navCtrl.push(QuestionAndAnswerPage);
+    console.log("openQuestionAndAnswePage");
+  }
  
  getCategories() {
    this.categoryService.getCategories()

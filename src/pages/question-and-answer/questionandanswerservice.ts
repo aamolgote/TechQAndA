@@ -1,8 +1,9 @@
-import {Injectable, Inject} from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { QuestionAndAnswer } from './questionandanswer';
 import { Observable } from 'rxjs/Observable';
 import '../../app/rxjs-operators';
+
 @Injectable()
 export class QuestionAndAnswerService {
     questionAndAnswerServiceUrl: string;

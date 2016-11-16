@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { QuestionAndAnswerService } from './questionandanswerservice';
 import { QuestionAndAnswer } from './questionandanswer';
+
 @Component({
   selector: 'page-question-and-answer',
   templateUrl: 'question-and-answer.html',
@@ -11,17 +12,18 @@ export class QuestionAndAnswerPage {
   category: any;
   questionAndAnswerId: number;
   questionAndAnswer: QuestionAndAnswer;
-  questionCount: number;
-  constructor(public navCtrl: NavController, private navParams: NavParams, private questionAndAnswerService: QuestionAndAnswerService) {
+  questionSerialNumber: number;
+  
+  constructor(public navCtrl: NavController, private navParams: NavParams, 
+              private questionAndAnswerService: QuestionAndAnswerService) {
     this.category = this.navParams.data;
     console.log(this.navParams);
     console.log(this.category);
-     this.questionCount = 1;
-     
+    this.questionSerialNumber = 1;
   }
 
   ionViewDidLoad() {
-    console.log("QuestionAndAnswerPage Page");
+    console.log("QuestionAndAnswerPage Page");    
   }
   
   ngOnInit() {
@@ -29,11 +31,10 @@ export class QuestionAndAnswerPage {
   }
   
   ngOnDestroy(){
-   
   }
   
   getQuestionAndAnswer() {
-    this.questionAndAnswerId = this.questionCount;
+    this.questionAndAnswerId = this.questionSerialNumber;
     this.questionAndAnswerService.getQuestionAndAnswer(this.category.Id, this.questionAndAnswerId)
       .subscribe(
       questionAndAnswer => {
@@ -45,13 +46,19 @@ export class QuestionAndAnswerPage {
   };
   
   nextQuestion(){
-      this.questionCount++;
-      this.getQuestionAndAnswer();
+      if (this.questionSerialNumber++ <= this.category.QuestionsCount){
+        //this.questionSerialNumber++;
+        this.getQuestionAndAnswer();
+      }
   }
   
   previousQuestion(){
-      this.questionCount--;
+    if (this.questionSerialNumber-- > 0){
+      //this.questionSerialNumber--;
       this.getQuestionAndAnswer();
+    }
   }
 
 }
+
+

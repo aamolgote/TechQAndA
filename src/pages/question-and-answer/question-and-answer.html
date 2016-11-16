@@ -5,19 +5,17 @@
   <ion-navbar>
     <ion-item>
       <ion-icon name="arrow-dropleft-circle" item-left (click)="previousQuestion()"></ion-icon>
-      <span> {{category.Name}} </span>
+      <span> {{category.Name}}  ({{questionSerialNumber}} / {{category.QuestionsCount}})</span>
       <ion-icon name="arrow-dropright-circle" item-right (click)="nextQuestion()"></ion-icon>
-    </ion-item> 
+    </ion-item>
   </ion-navbar>
 </ion-header>
-<ion-content padding scroll="true">
+<ion-content padding scroll="true" scrollbar-x="true" scrollbar-y="true">
   <div *ngIf="questionAndAnswer">
-        <span>
-            <h2>{{questionAndAnswer.Question}}</h2>
-        </span>
-        <span>
-            {{questionAndAnswer.Answer}}
-        </span>
-</div>
+    <h2>
+          <span [innerHTML]="questionAndAnswer.Question | sanitizeHtml"></span>
+    </h2>
+    <span [innerHTML]="questionAndAnswer.Answer | sanitizeHtml">
+    </span>
+  </div>
 </ion-content>
-

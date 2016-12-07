@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { CategoryService } from './categoryService';
 import { Category } from './Category';
 import { INTERVIEW_APP_CONFIG, INTERVIEW_APP_DI_CONFIG } from './categoryService';
-import { QuestionAndAnswerPage } from '../pages';
+import { SubCategoryPage } from '../pages';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -23,10 +23,10 @@ export class HomePage {
    console.log("Getting categories");
   } 
   
-  openQuestionAndAnswePage($event, category){
-    console.log("openQuestionAndAnswePage");
-    this.navCtrl.push(QuestionAndAnswerPage, category);
-    console.log("openQuestionAndAnswePage");
+  openSubCategoryPage($event, category){
+    console.log("openSubCategoryPage");
+    this.navCtrl.push(SubCategoryPage, category);
+    console.log("openSubCategoryPage");
   }
  
  getCategories() {
@@ -34,56 +34,35 @@ export class HomePage {
                   .subscribe(
                     (categories) => { 
                       this.categories = categories;
+                      console.log(this.categories);
                       this.categories.forEach(element => {
-                        switch (element.Name.toLowerCase()){
-                          case "angular js": 
-                            element.iconName = "logo-angular";
-                            break;
-                          case "node js - npm":
-                            element.iconName = "logo-nodejs";
-                            break;
-                          case "javascript and jquery":
+                        switch (element.name.toLowerCase()){
+                          case "javascript":
                             element.iconName = "logo-javascript";
                             break;
-                          case "core.net":
+                          case ".net":
                             element.iconName = "logo-windows";
                             break;
-                          case "linq and ef":
-                            element.iconName = "logo-windows";
-                            break;
-                          case "azure":
-                            element.iconName = "cloud";
-                            break;  
-                          case "html5":
-                            element.iconName = "logo-html5";
-                            break;  
-                          case "web api":
-                            element.iconName = "cloud-outline";
-                            break;
-                          case "nuget":
+                          case "package managers":
                             element.iconName = "ios-cube";
                             break;
-                          case "asp.net":
-                            element.iconName = "ios-globe";
-                            break;
-                          case "asp.net mvc":
-                          case "wcf":
-                            element.iconName = "ios-globe-outline";
-                            break;
-                          case "design and architecture":
-                            element.iconName = "grid";
-                            break;
-                          case "sql server":
-                            element.iconName = "ios-cube-outline";
-                            break;
-                          case "design patterns":
+                          case "design, architecture":
                             element.iconName = "md-bulb";
                             break;
-                          case "architecture":
-                            element.iconName = "logo-codepen";
+                          case "databases":
+                            element.iconName = "ios-cube-outline";
                             break;
-                          case "data structure":
+                          case "data structure and alogrithms":
                             element.iconName = "git-compare";
+                            break;
+                          case "html, css":
+                            element.iconName = "logo-html5";
+                            break;
+                           case "cloud computing":
+                            element.iconName = "cloud";
+                            break;
+                          case "source control, build and automation":
+                            element.iconName = "ios-cog";
                             break;
                           default:
                             element.iconName = "happy";

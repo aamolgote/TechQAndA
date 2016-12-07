@@ -4,7 +4,7 @@ import { OpaqueToken } from '@angular/core';
 
 import {Category} from './category';
 import {Observable} from 'rxjs/Observable';
-import '../../app/rxjs-operators';
+import '../../app/rxjs-operators'; 
 
 export let INTERVIEW_APP_CONFIG = new OpaqueToken('app.config');
 export interface ApplicationConfiguration{
@@ -13,7 +13,7 @@ export interface ApplicationConfiguration{
 }
 
 export const INTERVIEW_APP_DI_CONFIG: ApplicationConfiguration = {
-  apiEndPoint: 'http://interviewapp.cloudapp.net/api/Category',
+  apiEndPoint: 'http://techqandawebapi.azurewebsites.net/api/category',
   timeOut: 20
 };
 

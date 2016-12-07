@@ -1,6 +1,6 @@
 export class Category {
-    Id: number;
+    id: string;
     QuestionsCount: number;
-    Name:string;
+    name:string;
     iconName: string
 }
